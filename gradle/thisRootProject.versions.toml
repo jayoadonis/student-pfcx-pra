@@ -1,0 +1,17 @@
+
+[versions]
+student-pfcx-pra-app="0.0.1"
+student-pfcx-pra-lib="0.0.1"
+
+[libraries]
+[libraries.student-pfcx-pra-app]
+    group="com.student.pfcx"
+    name="student-pfcx-pra"
+    version.ref="student-pfcx-pra-app"
+#    appendix="app"
+
+[libraries.student-pfcx-pra-lib]
+    group="com.student.pfcx"
+    name="student-pfcx-pra"
+    version.ref="student-pfcx-pra-lib"
+#    appendix="lib"
