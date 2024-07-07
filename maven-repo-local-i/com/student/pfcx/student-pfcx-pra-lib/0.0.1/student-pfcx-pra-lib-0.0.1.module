@@ -1,0 +1,60 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.student.pfcx",
+    "module": "student-pfcx-pra-lib",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "student-pfcx-pra-lib-0.0.1-alpha.jar",
+          "url": "student-pfcx-pra-lib-0.0.1-alpha.jar",
+          "size": 3137,
+          "sha512": "9256e24617a16cfc87c43a733e80d4cf1a58a0364391981e563da88d1d469db637d7a0518011b7012c0ca68b8c203c9d1ecfa25e51b24a6c8f745b40a5710a0e",
+          "sha256": "68c66de3dbb4f4ee51a4b45163340f9320d8d1e23d737174fed46f499bf5d5a8",
+          "sha1": "ac889cb6ec7e62038aa648ce339c7dbbdd3521c6",
+          "md5": "f2fcdaa008e71302d32bf3a26eb88b4d"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "student-pfcx-pra-lib-0.0.1-alpha.jar",
+          "url": "student-pfcx-pra-lib-0.0.1-alpha.jar",
+          "size": 3137,
+          "sha512": "9256e24617a16cfc87c43a733e80d4cf1a58a0364391981e563da88d1d469db637d7a0518011b7012c0ca68b8c203c9d1ecfa25e51b24a6c8f745b40a5710a0e",
+          "sha256": "68c66de3dbb4f4ee51a4b45163340f9320d8d1e23d737174fed46f499bf5d5a8",
+          "sha1": "ac889cb6ec7e62038aa648ce339c7dbbdd3521c6",
+          "md5": "f2fcdaa008e71302d32bf3a26eb88b4d"
+        }
+      ]
+    }
+  ]
+}

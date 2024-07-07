@@ -24,9 +24,16 @@ settings.dependencyResolutionManagement {
         "settings.dependencyResolutionManagement"
     )
     this.repositories {
+        this.maven {
+            this.name = settings.providers.gradleProperty("project.maven.repo.local.name.i" )
+                .orNull.takeIf{ it.toString().isNotBlank() }!!;
+            this.url = uri( "${settings.rootProject.projectDir}/" +
+                    "${this.name}/" );
+        }
         this.mavenCentral();
         this.gradlePluginPortal();
     }
+
     this.versionCatalogs {
         this.register("thisRootProject") {
             this.from( files( "./gradle/${this.name}.versions.toml" ) )
@@ -56,7 +63,8 @@ settings.gradle.projectsEvaluated {
             val VERSION_CATALOGS_EXTENSION = project.extensions.getByType<VersionCatalogsExtension>();
             val VCE_TEST_LIB = VERSION_CATALOGS_EXTENSION.named( "testLib" );
 
-            this.dependencies {
+
+            project.dependencies {
                 this.add( "testImplementation", VCE_TEST_LIB
                     .findLibrary( "junit-jupiter-api" ).get()
                 );
@@ -138,8 +146,26 @@ settings.gradle.projectsEvaluated {
                 val PUBLISHING_EXTENSION = project.extensions.getByType<PublishingExtension>();
                 PUBLISHING_EXTENSION.publications {
                     if (project.plugins.hasPlugin(MavenPublishPlugin::class.java)) {
+
+                        this.register<MavenPublication>( "maven-pub-II" ) {
+
+                            this.from(components["java"]);
+
+                            val FAT_JAR_I: Jar = tasks.named<Jar>("fatJarI" ).get();
+
+                            this.artifact( FAT_JAR_I );
+
+                            this.artifactId =
+                                "${FAT_JAR_I.archiveBaseName.get()}-${FAT_JAR_I.archiveAppendix.get()}";
+                        }
+
                         this.register<MavenPublication>("maven-pub-I") {
                             this.from(components["java"]);
+
+                            val BUILT_IN_JAR: Jar = tasks.named<Jar>("jar").get();
+                            this.artifactId =
+                                "${BUILT_IN_JAR.archiveBaseName.get()}-${BUILT_IN_JAR.archiveAppendix.get()}";
+
                             this.pom {
                                 this.developers {
                                     this.developer {
@@ -165,7 +191,8 @@ settings.gradle.projectsEvaluated {
 
                         PUBLISHING_EXTENSION.repositories {
                             this.maven {
-                                this.name = "maven-repo-local-I";
+                                this.name = settings.providers.gradleProperty("project.maven.repo.local.name.i" )
+                                    .orNull.takeIf{ it.toString().isNotBlank() }!!;
                                 this.url = uri("${project.rootProject.layout.projectDirectory}/${this.name}");
                             }
                         }
@@ -195,8 +222,10 @@ settings.gradle.projectsEvaluated {
 
                         PUBLISHING_EXTENSION.repositories {
                             this.ivy {
-                                this.name = "ivy-repo-local-I";
-                                this.url = uri("${project.rootProject.layout.projectDirectory}/${this.name}")
+                                this.name = settings.providers.gradleProperty("project.ivy.repo.local.name.i" )
+                                    .orNull.takeIf{ it.toString().isNotBlank() }!!;
+                                this.url = uri("${project.rootProject.layout.projectDirectory}/${this.name}");
+                                //REM: [TODO-HERE]
                             }
                         }
                     }

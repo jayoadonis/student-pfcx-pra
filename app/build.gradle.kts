@@ -14,3 +14,16 @@ project.java {
     this.sourceCompatibility = JavaVersion.VERSION_11;
     this.targetCompatibility = JavaVersion.VERSION_11;
 }
+
+project.application {
+    this.mainClass.set(
+        "com.student.pfcx.pra.app.MainExe"
+    );
+    this.mainModule.set(
+        "student.pfcx.pra.app"
+    )
+}
+
+project.dependencies {
+    this.implementation( "com.student.pfcx:student-pfcx-pra-lib:0.0.1:alpha" );
+}
