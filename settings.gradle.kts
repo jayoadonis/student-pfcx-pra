@@ -103,9 +103,11 @@ settings.gradle.projectsEvaluated {
             this.tasks.register<Jar>("fatJarI") {
                 this.group = "build"
 
+                this.duplicatesStrategy = DuplicatesStrategy.EXCLUDE;
+
                 val BUILT_IN_JAR: Jar = tasks.named<Jar>("jar").get();
-                this.dependsOn( BUILT_IN_JAR.dependsOn );
-                this.from( BUILT_IN_JAR.source );
+                this.dependsOn( BUILT_IN_JAR );
+//                this.from( BUILT_IN_JAR.source );
 
                 this.archiveClassifier.set("fat")
 
@@ -128,6 +130,7 @@ settings.gradle.projectsEvaluated {
 //                    this.attributes["Appendix"] = archiveAppendix.get().takeIf { it.isNotBlank() }
 //                        ?: "<undefined>"
                 }
+
 
             }
 
